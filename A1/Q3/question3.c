@@ -2,6 +2,8 @@
 #include <assert.h>
 #include <math.h>
 
+int multiples (int x, int y, int N);
+
 int multiples (int x, int y, int N){
     int i;
     int sum = 0;

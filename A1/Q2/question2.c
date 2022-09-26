@@ -2,6 +2,8 @@
 #include <assert.h>
 #include <math.h>
 
+float onethird (int n);
+
 float onethird (int n) {
 
 int i;
