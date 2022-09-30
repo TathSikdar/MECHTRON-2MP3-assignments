@@ -10,15 +10,19 @@ int i;
 float counter = 0;
 
     for (i=1; i<=n; i++) {
-        counter += i*i;
+        counter += pow(i,2);
     }
 
-    counter /= n*n*n;
+    counter /= pow(n,3);
     return counter;
 
 }
 
 int main () {
+
+    float this = onethird(9999);
+
+    printf("%f",this);
 
     return 0;
 
