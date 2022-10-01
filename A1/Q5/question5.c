@@ -5,19 +5,28 @@
 
 int LeapYearCheck (int n);
 
-int LeapYearCheck (int n){
+int LeapYearCheck (int n) {
     
-    if (n%4==0){
-        return true;
-    }else{
+    if (n%4==0) {
+        if (n%100==0){
+            if (n%400==0){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            return true;
+        }
+    }
+    else{
         return false;
     }
 
 }
 
 int main () {
-
-    printf("%d", LeapYearCheck(2100));
 
     return 0;
 

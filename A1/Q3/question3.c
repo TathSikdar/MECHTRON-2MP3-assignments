@@ -18,9 +18,7 @@ int multiples (int x, int y, int N){
 }
 
 int main () {
-    int thisone = multiples(4,10,20);
-
-    printf("%d", thisone);
 
     return 0;
+    
 }

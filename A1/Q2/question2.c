@@ -20,10 +20,6 @@ float counter = 0;
 
 int main () {
 
-    float this = onethird(9999);
-
-    printf("%f",this);
-
     return 0;
 
 }

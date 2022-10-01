@@ -11,10 +11,7 @@ float compoundInterest (float p, int a, int n){
 }
 
 int main () {
-    
-    float s = compoundInterest(0.05,20,5);
-
-    printf("%d", s);
 
     return 0;
+    
 }
