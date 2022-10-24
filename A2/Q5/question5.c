@@ -34,10 +34,5 @@ int binsearch(int* x, int y, int size){
 
 int main () {
 
-    int x[] ={100};
-
-    int sizex = sizeof(x)/sizeof(x[0]);
-
-    printf("\n%d", binsearch(x,100,sizex));
     return 0;
 }

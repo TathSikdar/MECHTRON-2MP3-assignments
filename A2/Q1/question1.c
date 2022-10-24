@@ -74,10 +74,5 @@ int mode(int* x, int size){
 
 int main () {
 
-    int x[] = {6,5,4,3,3,1,1,33,1};
-    int sizex = sizeof(x)/sizeof(x[0]);
-
-    printf("%d",mode(x,sizex));
-
     return 0;
 }

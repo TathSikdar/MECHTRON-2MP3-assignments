@@ -27,19 +27,6 @@ int bubblesort(int* x, int size){
 }
 
 int main () {
-
-    int x[]={1};
-
-    int sizex = sizeof(x)/sizeof(x[0]);
-
-    printf("%d", bubblesort(x, sizex));
-
-    printf("[");
-    for(int i =0; i<sizex; i++){
-        printf("%d,",x[i]);
-    }
-    printf("]");
-
-    
+ 
     return 0;
 }
