@@ -7,19 +7,17 @@ int bubblesort(int* x, int size);
 
 int bubblesort(int* x, int size){
 
-    int sortedList[size];
     int i, j;
     int counter = 0;
+    int temp;
 
     for(i=0; i<size-1; i++){
         for(j=0; j<size-i-1; j++){
-            int compare1, compare2;
             if(x[j]>x[j+1]){
-                compare1 = x[j];
-                compare2 = x[j+1];
+                temp = x[j];
 
-                x[j] = compare2;
-                x[j+1] = compare1;
+                x[j] = x[j+1];
+                x[j+1] = temp;
                 
                 counter++;
             }
@@ -30,12 +28,17 @@ int bubblesort(int* x, int size){
 
 int main () {
 
-    int x[]={100};
+    int x[]={1};
 
     int sizex = sizeof(x)/sizeof(x[0]);
 
     printf("%d", bubblesort(x, sizex));
 
+    printf("[");
+    for(int i =0; i<sizex; i++){
+        printf("%d,",x[i]);
+    }
+    printf("]");
 
     
     return 0;

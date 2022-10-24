@@ -6,11 +6,11 @@
 double mean(int* x, int size);
 double median(int* x, int size);
 int mode(int* x, int size);
-void bubbleSort(int* x, int size);
+void bubblesort(int* x, int size);
 
 double mean(int* x, int size){
 
-    double counter = 0;
+    double counter = 0.0;
 
     for (int i=0; i<size; i++){
         counter += *x;
@@ -20,30 +20,28 @@ double mean(int* x, int size){
     return counter/size;
 }
 
-void bubbleSort(int* x, int size){
+void bubblesort(int* x, int size){
 
-    int sortedList[size];
     int i, j;
+    int temp;
 
     for(i=0; i<size-1; i++){
         for(j=0; j<size-1; j++){
-            int compare1, compare2;
             if(x[j]>x[j+1]){
-                compare1 = x[j];
-                compare2 = x[j+1];
+                temp = x[j];
 
-                x[j] = compare2;
-                x[j+1] = compare1;
+                x[j] = x[j+1];
+                x[j+1] = temp;
             }
         }
     }
 }
 
 double median(int* x, int size){
-    bubbleSort(x, size);
+    bubblesort(x, size);
     
     if(size%2){
-        int index = floor(size/2);
+        int index = floor(size/2.0);
         double median = x[index];
         return median;
     }
@@ -76,7 +74,7 @@ int mode(int* x, int size){
 
 int main () {
 
-    int x[] = {1,3,4,1,3,3,3,3,2,2,2,9};
+    int x[] = {6,5,4,3,3,1,1,33,1};
     int sizex = sizeof(x)/sizeof(x[0]);
 
     printf("%d",mode(x,sizex));

@@ -22,7 +22,7 @@ int juggler(int n){
 
 int main () {
 
-    printf("\n%d",juggler(10000));
+    printf("\n%d",juggler(37));
     
     return 0;
 }
