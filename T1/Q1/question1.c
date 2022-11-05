@@ -4,27 +4,31 @@ int getRekt (int n, int* numAdditions, int* numSubtractions) ;
 
 int getRekt (int n, int* numAdditions, int* numSubtractions){
 
-	int* racaman[n];
+	int racaman[n];
 
 	racaman[0]=0;
 
+	int inList = 0;
 
 	for(int i=1; i<n;i++){
-		printf("%d,%d,%d<----this\n",racaman[i-1],-i,racaman[i-1]-i);
+		inList=0;
 		if(racaman[i-1]-i<=0){
-			racaman[i]==racaman[i-1]+i;
-			*numAdditions++;
+			racaman[i]=racaman[i-1]+i;
+			(*numAdditions)++;
 		}
 		else{
 			for(int j=0;j<i;j++){
 				if (racaman[i-1]-i==racaman[j]){
 					racaman[i]=racaman[i-1]+i;
-					*numAdditions++;
+					(*numAdditions)++;
+					inList=1;
 					break;
 				}
 			}
+			if(!inList){
 			racaman[i]=racaman[i-1]-i;
-			*numSubtractions++;
+			(*numSubtractions)++;
+			}
 		}
 	}
 	return racaman[n-1];

@@ -6,55 +6,90 @@ int* walk(int board[10][10], int* start) ;
 
 int* walk(int board[10][10], int* start){
 
-	int* indexstart = start;
-	while(*indexstart-1<=9 && *indexstart-1>=1){
-		indexstart--;
-	}
-
-	int startrow = floor((start-indexstart)/10);
-	int startcolumn = (start-indexstart)%10;
-
-	int row = floor((start-indexstart)/10);
-	int column = (start-indexstart)%10;
-	int counter = 0;
+	int startrow = floor((start-&board[0][0])/10.0);
+	int startcolumn = (start-&board[0][0])%10;
+	int row = startrow;
+	int column = startcolumn;
 
 
-	while(*start!=5 && row<10 && column<10 && counter<10){
-		if(board[column][row]==1){
-			row++;
-			column--;
-			counter++;
+
+
+	while(board[row][column]!=5){
+		if((board[row][column])==1){
+			board[row][column]=0;
+			if((board[row+1][column-1]) && row+1>=0 && row+1<=9 && column-1>=0 && column-1<=9){
+				row++;
+				column--;
+			}
+			else{
+				break;
+			}
 		}
-		else if(board[column][row]==2){
-			row--;
-			counter++;
+		else if((board[row][column])==2){
+			board[row][column]=0;
+			if((board[row+1][column]) && row+1>=0 && row+1<=9 && column>=0 && column<=9){
+				row++;
+			}
+			else{
+				break;
+			}
 		}
-		else if(board[column][row]==3){
-			row++;
-			column++;
-			counter++;
+		else if((board[row][column])==3){
+			board[row][column]=0;
+			if((board[row+1][column+1]) && row+1>=0 && row+1<=9 && column+1>=0 && column+1<=9){
+				row++;
+				column++;
+			}
+			else{
+				break;
+			}
 		}
-		else if(board[column][row]==4){
-			column--;
-			counter++;
+		else if((board[row][column])==4){
+			board[row][column]=0;
+			if((board[row][column-1]) && row>=0 && row<=9 && column-1>=0 && column-1<=9){
+				column--;
+			}
+			else{
+				break;
+			}
 		}
-		else if(board[column][row]==6){
-			column++;
-			counter++;
+		else if((board[row][column])==6){
+			board[row][column]=0;
+			if((board[row][column+1]) && row>=0 && row<=9 && column+1>=0 && column+1<=9){
+				column++;
+			}
+			else{
+				break;
+			}
 		}
-		else if(board[column][row]==7){
-			row--;
-			column--;
-			counter++;
+		else if((board[row][column])==7){
+			board[row][column]=0;
+			if((board[row-1][column-1]) && row>=0 && row<=9 && column-1>=0 && column-1<=9){
+				row--;
+				column--;	
+			}
+			else{
+				break;
+			}
 		}
-		else if(board[column][row]==8){
-			row--;
-			counter++;
+		else if((board[row][column])==8){
+			board[row][column]=0;
+			if((board[row-1][column]) && row-1>=0 && row-1<=9 && column>=0 && column<=9){
+				row--;	
+			}
+			else{
+				break;
+			}
 		}
-		else if(board[column][row]==9){
-			row--;
-			column++;
-			counter++;
+		else if((board[row][column])==9){
+			board[row][column]=0;
+			if((board[row-1][column+1]) && row-1>=0 && row-1<=9 && column+1>=0 && column+1<=9){
+				row--;
+				column++;
+			}
+			else{
+				break;
+			}
 		}
 	}
 	int rowdif = row-startrow;
