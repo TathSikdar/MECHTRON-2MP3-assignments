@@ -34,5 +34,8 @@ int binsearch(int* x, int y, int size){
 
 int main () {
 
+    int this[]={100};
+
+    printf("%d",binsearch(this,100,1));
     return 0;
 }
