@@ -7,6 +7,26 @@ void push (long **start, long **end, long value);
 long pop (long **start, long **end); // You don't have to implement this one.
 
 
+int isEmpty (const long *start, const long *end){
+    if(!start || !end || start==end){
+        return 1;
+    }
+    return 0;
+}
+
+void push (long **start, long **end, long value){
+    if(isEmpty(*start,*end)){
+        *start=(long*)malloc(sizeof(long));
+        *end = *start+1;
+        *(*end-1)=value;
+    }
+    else{
+        int currentlen = *end-*start;
+        *start=(long *)realloc(*start,*end-*start+sizeof(long));
+        *end=*start+currentlen;
+        *(*end-1)=value;
+    }
+}
 
 // This testing code has been provided curteousy of ACME Inc.
 //   "Our products are perfectly capable of catching road runners."
@@ -21,6 +41,29 @@ void printStack(long **start, long **end) {
     printf("]\n");
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 int main () {
     printf("Starting...\n");
     long *start = NULL;
@@ -34,32 +77,34 @@ int main () {
     printStack(&start, &stop);
     push(&start, &stop, 4L);
     printStack(&start, &stop);
+    push(&start, &stop, 4L);
+    printStack(&start, &stop);
     push(&start, &stop, 5L);
     printStack(&start, &stop);
     
-    long out = pop(&start, &stop);
-    printf("popped %ld\n", out);
-    printStack(&start, &stop);
+    // long out = pop(&start, &stop);
+    // printf("popped %ld\n", out);
+    // printStack(&start, &stop);
     
-    out = pop(&start, &stop);
-    printf("popped %ld\n", out);
-    printStack(&start, &stop);
+    // out = pop(&start, &stop);
+    // printf("popped %ld\n", out);
+    // printStack(&start, &stop);
     
-    out = pop(&start, &stop);
-    printf("popped %ld\n", out);
-    printStack(&start, &stop);
+    // out = pop(&start, &stop);
+    // printf("popped %ld\n", out);
+    // printStack(&start, &stop);
     
-    out = pop(&start, &stop);
-    printf("popped %ld\n", out);
-    printStack(&start, &stop);
+    // out = pop(&start, &stop);
+    // printf("popped %ld\n", out);
+    // printStack(&start, &stop);
     
-    out = pop(&start, &stop);
-    printf("popped %ld\n", out);
-    printStack(&start, &stop);
+    // out = pop(&start, &stop);
+    // printf("popped %ld\n", out);
+    // printStack(&start, &stop);
     
-    out = pop(&start, &stop);
-    printf("popped %ld\n", out);
-    printStack(&start, &stop);
+    // out = pop(&start, &stop);
+    // printf("popped %ld\n", out);
+    // printStack(&start, &stop);
     
 /***Expected Output:****
 

@@ -9,39 +9,54 @@ void reverse(char* str);
 int count(char* str);
 
 void reverse(char* str){
-    int len = sizeof(str)/sizeof(str[0]);
-    char temp[len]; 
-
-    for(int i=len;i>=0;i--){
-        temp[len-i]=str[i-1];
+    int len=0;
+    char switchtemp;
+    int i=0;
+    while(str[i]){
+        len++;
+        i++;
     }
-    for(int i=0;i<len;i++){
-        str[i]=temp[i];
+    if(len%2){ //odd
+        for(i=0; i<(len-1)/2; i++){
+            int j=len-1-i;
+            switchtemp=str[j];
+            str[j]=str[i];
+            str[i]=switchtemp;
+        }
     }
-    str[len]='\0';
+    else{
+        for(i=0; i<len/2; i++){
+            int j = len-1-i;
+            switchtemp=str[j];
+            str[j]=str[i];
+            str[i]=switchtemp;
+        }
+    }
 }
 
 int count(char* str){
-    int len = sizeof(str)/sizeof(str[0]);
     char vowels[]={'a','e','i','o','u'};
     int lenvowels = sizeof(vowels)/sizeof(vowels[0]);
-    int counter = 0;    
+    int counter = 0;
+    int i=0;
+    int j=0;   
 
-    for(int i=0;i<len;i++){
+    while(str[i]){
         for(int j=0;j<lenvowels;j++){
             if(tolower(str[i])==vowels[j]){
                 counter++;
                 break;
             }
         }
+        i++;
     }
     return counter;
 }
 
 
 int main () {
-    char this[]="McMAster";
+    char this[]="rachel tsang";
     reverse(this);
-    printf("%10s",this);
+    printf("%s",this);
     return 0;
 }

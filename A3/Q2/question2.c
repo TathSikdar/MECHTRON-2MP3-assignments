@@ -34,7 +34,7 @@ void removeDups(int* in, int size){
 
 int main () {
 
-    int this[]={1,2,3,4,4,4,5,6};
+    int this[]={1,2,2,2,3,3,4,2,4,5,6,6,6};
     int size=sizeof(this)/sizeof(this[0]);
 
     removeDups(this, size);
