@@ -5,6 +5,70 @@
 void DMY_MonthDY(char *buffer, const char *str);
 void MonthDY_DMY(char *buffer, const char *str);
 
+void DMY_MonthDY(char *buffer, const char *str){
+    char months[12][10]={"January","February","March","April","May","June","July","August","September","October","November","December"};
+    char *endptr=str-1;
+    int date[3]; //Day,Month,year
+    for(int j=0;j<3;j++){
+        date[j]=(int)strtol(endptr+1,&endptr,10);
+    }
+    snprintf(buffer,19, "%-10s%2d, %4d",months[date[1]-1], date[0],date[2]);
+}
+
+void MonthDY_DMY(char *buffer, const char *str){
+    const char MONTHS[12][10]={"January","February","March","April","May","June","July","August","September","October","November","December"};
+    char month[10]="";
+    int convertedmonth;
+    int date;
+    int year;
+    char *endptr;
+    char strdate[3];
+    char strmonth[3];
+    char stryear[5];
+
+    
+    for(int i=0;i<9;i++){
+        if(str[i]!=' '){
+            month[i]=str[i];
+        }
+        else{
+            break;
+        }
+    }
+    for(int i=10;i<12;i++){ //Days
+        if(str[i]!=' '){
+            date=(int)strtol(str+i,&endptr,10);
+            break;
+        }
+    }
+    for(int i=14;i<19;i++){ //Years
+        if(str[i]!=' '){
+            year=(int)strtol(str+i,&endptr,10);
+            break;
+        }
+    }
+    for(int i=0;i<12;i++){
+        if(!strcmp(&month,MONTHS+i)){
+            convertedmonth=i+1;
+            break;
+        }
+    }
+    (date<10) ? snprintf(strdate,3,"0%d",date) : snprintf(strdate,3,"%d",date);
+    (convertedmonth<10) ? snprintf(strmonth,3,"0%d",convertedmonth) : snprintf(strmonth,3,"%d",convertedmonth);
+    if(year>=1000){
+        snprintf(stryear,5,"%d",year);
+    }
+    else if(year>=100){
+        snprintf(stryear,5,"0%d",year);
+    }
+    else if(year>=10){
+        snprintf(stryear,5,"00%d",year);
+    }
+    else{
+        snprintf(stryear,5,"000%d",year);
+    }
+    snprintf(buffer,11,"%s/%s/%s",strdate,strmonth,stryear);
+}
 
 
 int main(){
@@ -17,7 +81,7 @@ char format1[12][11] = { "01/01/1970"
                        , "01/07/1867"
                        , "03/08/1492"
                        , "02/09/1945"
-                       , "24/08/1917"
+                       , "24/10/1917"
                        , "11/11/1918"
                        , "08/12/1980"
                        };
@@ -37,6 +101,7 @@ char format2[12][19] = { "January    1, 1970" // First Day of History (according
     
     char buffer1[12][11];
     char buffer2[12][19];
+
     
     printf ("-- DD\\MM\\YY to Month DD, YYYY\n");
     for (int i = 0; i < 12; i++) {
