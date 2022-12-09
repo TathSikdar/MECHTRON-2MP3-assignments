@@ -4,7 +4,13 @@
 
 typedef struct treenode Node;
 typedef struct stack Stack;
+struct treenode;
+struct stack;
 int depth(Node *node);
+Stack *makestack(Node *ptr);
+Stack *push(Stack *stack, Node *ptr);
+Stack *pop(Stack *stack);
+int dfs(Node *node, char* name);
 
 struct treenode{
     char *name;
@@ -67,12 +73,13 @@ int dfs(Node *node, char* name){
             return searches;
         }
         else{
+            Node *tempval = searchstack->val;
             searchstack = pop(searchstack);
-            if(searchstack->val->right){
-                searchstack = push(searchstack,searchstack->val->right);
+            if(tempval->right){
+                searchstack = push(searchstack,tempval->right);
             }
-            if(searchstack->val->left){
-                searchstack = push(searchstack,searchstack->val->left);
+            if(tempval->left){
+                searchstack = push(searchstack,tempval->left);
             }
         }
     }
@@ -146,9 +153,9 @@ int main() {
     printf("The depth of the tree is: %d\n", depth(root));
     // expected result is 5.
     
-    // printf("Depth First Search for : Nicholas\n");
-    // printf("result: %d\n", dfs(root, "Nicholas"));
-    // // expected result is 1
+    printf("Depth First Search for : Nicholas\n");
+    printf("result: %d\n", dfs(root, "Nicholas"));
+    // expected result is 1
     
     printf("Depth First Search for : Other Mark\n");
     printf("result: %d\n", dfs(root, "Other Mark"));
