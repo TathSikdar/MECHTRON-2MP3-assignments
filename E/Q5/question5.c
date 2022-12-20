@@ -2,11 +2,23 @@
 #include<string.h>
 
 void incBytes (void* array, int size_of_type, int size_of_array);
+int bitwiseadd(char x, char y);
 
 void incBytes (void* array, int size_of_type, int size_of_array){
-    for(int i=0;i<size_of_array;i++){
-        ()
+    for(int i=0;i<size_of_array*size_of_type;i++){
+        char *byte= (char *)(array+i);
+        *byte = bitwiseadd(1,*byte);
     }
+}
+
+int bitwiseadd(char x, char y){
+    while (y != 0)
+    {
+        int carry = x & y;
+        x = x ^ y; 
+        y = carry << 1;
+    }
+    return x;
 }
 
 void printHexArray(int* arr, int size) {
