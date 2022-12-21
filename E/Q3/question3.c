@@ -23,28 +23,57 @@ int lookup(HashTable* table, int key);
 void insert(HashTable* table, int key, int val);
 
 HashTable* init (int size){
-	HashTable *this = (HashTable*)malloc(sizeof(HashTable));
+	HashTable *this = (HashTable*) malloc(sizeof(HashTable));
 	this->size=size;
-
-
+	this->arr=(SLL**) malloc(sizeof(SLL*)*size);
+	for(int i=0;i<size;i++){
+		this->arr[i]=NULL;
+	}
 	return this;
 }
 
 int hash(int key, int size){
-    int ans = 777*key%size;
-    return ans;
+    return (777*key%size);
 }
 
 void insert(HashTable* table, int key, int val){
-
+	int index = hash(key, table->size);
+	if(table->arr[index]){
+		SLL *nextNode = table->arr[index];
+		table->arr[index]=(SLL*) malloc(sizeof(SLL));
+		table->arr[index]->key=key;
+		table->arr[index]->val=val;
+		table->arr[index]->next=nextNode;
+	}
+	else{
+		table->arr[index]=(SLL*) malloc(sizeof(SLL));
+		table->arr[index]->key=key;
+		table->arr[index]->val=val;
+		table->arr[index]->next=NULL;
+	}
 }
 
 int walkSLL(SLL* cur, int key){
-
+	if(cur->key==key){
+		return cur->val;
+	}
+	else{
+		SLL* nextNode = cur->next;
+		while(nextNode){
+			if(nextNode->key==key){
+				return nextNode->val;
+			}
+			else{
+				nextNode=nextNode->next;
+			}
+		}
+	}
+	return -1;
 }
 
 int lookup(HashTable* table, int key){
-
+	int index = hash(key,table->size);
+	return walkSLL(table->arr[index],key);
 }
 
 void printSLL(SLL* node) {
@@ -78,6 +107,10 @@ int main() {
 	insert(table1, 2, 789);		
 	
 	printTable(table1);
+
+	printf("|||%d|||",lookup(table1,55));
+	printf("|||%d|||",lookup(table1,98));
+	printf("|||%d|||",lookup(table1,2));
 /* expected output:
 
 ---table at 0x556d326cc2a0--------------
